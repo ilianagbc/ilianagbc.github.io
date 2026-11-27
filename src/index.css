@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Bricolage Grotesque", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* IBNB Architectural Engineering Palette (anchored to official brand mark) */
+  --color-plaster: #f6f8f6;
+  --color-paper: #ffffff;
+  --color-mist: #ebf0ec;
+  --color-pine: #073520;
+  --color-pine-deep: #052617;
+  --color-emerald: #157a4b;
+  --color-emerald-soft: #e6f2eb;
+  --color-brass: #9a6f22;
+  --color-brass-soft: #f7f1e3;
+  --color-ink: #1f2924;
+  --color-ink-muted: #526059;
+  --color-rule: #d5ded8;
+
+  /* Legacy aliases preserved for compatibility */
+  --color-nt-bg: #f6f8f6;
+  --color-nt-surface: #ffffff;
+  --color-nt-sidebar: #ebf0ec;
+  --color-nt-primary: #073520;
+  --color-nt-primary-dark: #052617;
+  --color-nt-accent: #157a4b;
+  --color-nt-accent-light: #24975e;
+  --color-nt-accent-soft: #e6f2eb;
+  --color-nt-text-main: #1f2924;
+  --color-nt-text-muted: #526059;
+  --color-nt-line: #d5ded8;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--color-plaster);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+  }
+
+  :is(a, button, input, select, textarea):focus-visible {
+    outline: 2px solid var(--color-emerald);
+    outline-offset: 2px;
+  }
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.page-enter {
+  animation: pageFadeIn 200ms ease-out both;
+}
+
+/* Signature viewfinder corner ticks echoing the IBNB mark */
+.ibnb-viewfinder {
+  position: relative;
+}
+
+.ibnb-viewfinder::before,
+.ibnb-viewfinder::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.ibnb-viewfinder::before {
+  top: -7px;
+  left: -7px;
+  border-top: 2px solid var(--color-pine);
+  border-left: 2px solid var(--color-pine);
+}
+
+.ibnb-viewfinder::after {
+  bottom: -7px;
+  right: -7px;
+  border-bottom: 2px solid var(--color-pine);
+  border-right: 2px solid var(--color-pine);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .page-enter {
+    animation: none;
+  }
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
